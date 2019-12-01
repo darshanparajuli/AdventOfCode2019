@@ -3,7 +3,6 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 use std::io::BufReader;
-use std::ops::FnMut;
 
 pub fn parse_input<B, F>(mut f: F) -> Result<Vec<B>, io::Error>
 where
