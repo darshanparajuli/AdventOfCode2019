@@ -9,8 +9,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+fn required_fuel(a: i32) -> i32 {
+    a / 3 - 2
+}
+
 fn part1(input: &[i32]) {
-    let sum: i32 = input.iter().map(|e| e / 3 - 2).sum();
+    let sum: i32 = input.iter().map(|e| required_fuel(*e)).sum();
     println!("part 1: {}", sum);
 }
 
@@ -21,7 +25,7 @@ fn part2(input: &[i32]) {
             let mut fuel = *e;
             let mut total = 0;
             while fuel != 0 {
-                fuel = max(fuel / 3 - 2, 0);
+                fuel = max(required_fuel(fuel), 0);
                 total += fuel;
             }
             total
