@@ -15,9 +15,8 @@ where
 
     let reader = BufReader::new(File::open(arg)?);
 
-    Ok(reader
+    reader
         .lines()
         .map(|line| line.map(|s| f(s)))
-        .flatten()
-        .collect::<Vec<B>>())
+        .collect::<Result<Vec<B>, _>>()
 }
