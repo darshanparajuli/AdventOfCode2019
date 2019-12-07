@@ -112,7 +112,7 @@ fn part2(program: Vec<i32>) {
         let mut c5 = IntCodeComputer::new(program.clone());
         c5.push_input(s[4]);
 
-        while !c5.halted {
+        loop {
             let o = match c1.run() {
                 Some(o) => o,
                 None => break,
@@ -334,7 +334,7 @@ impl IntCodeComputer {
             }
         }
 
-        self.last_output
+        None
     }
 
     fn push_input(&mut self, input: i32) {
