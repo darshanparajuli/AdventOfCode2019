@@ -1,9 +1,9 @@
-use aoc_2019::parse_input;
+use aoc_2019::read_input;
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let input = parse_input(|line| line)?
+    let input = read_input()?
         .iter()
         .map(|line| {
             let mut a = line.split(")");

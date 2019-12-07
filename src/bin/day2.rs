@@ -1,11 +1,16 @@
-use aoc_2019::parse_input;
+use aoc_2019::read_input;
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let input = parse_input(|line| line)?[0]
-        .split(",")
-        .map(|a| a.parse::<i32>())
-        .collect::<Result<Vec<_>, _>>()?;
+    let input = read_input()?
+        .iter()
+        .flat_map(|line| {
+            line.split(",")
+                .map(|a| a.parse::<i32>())
+                .collect::<Result<Vec<_>, _>>()
+        })
+        .flatten()
+        .collect::<Vec<_>>();
 
     part1(input.clone());
     part2(input);

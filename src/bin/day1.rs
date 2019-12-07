@@ -1,9 +1,12 @@
-use aoc_2019::parse_input;
+use aoc_2019::read_input;
 use std::cmp::max;
 use std::error::Error;
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let input = parse_input(|line| line.parse::<i32>().unwrap())?;
+    let input = read_input()?
+        .iter()
+        .map(|line| line.parse::<i32>())
+        .collect::<Result<Vec<_>, _>>()?;
     part1(&input);
     part2(&input);
     Ok(())

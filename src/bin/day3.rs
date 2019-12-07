@@ -1,4 +1,4 @@
-use aoc_2019::parse_input;
+use aoc_2019::read_input;
 use std::cmp;
 use std::error::Error;
 
@@ -11,17 +11,20 @@ enum Path {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let input = parse_input(|line| {
-        line.split(",")
-            .map(|e| match &e[0..1] {
-                "R" => Path::R(e[1..].parse::<u32>().unwrap()),
-                "U" => Path::U(e[1..].parse::<u32>().unwrap()),
-                "L" => Path::L(e[1..].parse::<u32>().unwrap()),
-                "D" => Path::D(e[1..].parse::<u32>().unwrap()),
-                _ => unreachable!(),
-            })
-            .collect::<Vec<_>>()
-    })?;
+    let input = read_input()?
+        .iter()
+        .map(|line| {
+            line.split(",")
+                .map(|e| match &e[0..1] {
+                    "R" => Path::R(e[1..].parse::<u32>().unwrap()),
+                    "U" => Path::U(e[1..].parse::<u32>().unwrap()),
+                    "L" => Path::L(e[1..].parse::<u32>().unwrap()),
+                    "D" => Path::D(e[1..].parse::<u32>().unwrap()),
+                    _ => unreachable!(),
+                })
+                .collect::<Vec<_>>()
+        })
+        .collect::<Vec<_>>();
     assert!(input.len() == 2);
 
     part1(&input[0], &input[1]);
