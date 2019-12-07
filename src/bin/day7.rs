@@ -146,10 +146,6 @@ fn part2(program: Vec<i32>) {
                 max = o;
             }
 
-            if c5.halted {
-                break;
-            }
-
             c1.push_input(o);
         }
     }
