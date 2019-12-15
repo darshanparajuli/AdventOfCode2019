@@ -314,4 +314,8 @@ impl IntCodeComputer {
 
         Ret::Halt
     }
+
+    pub fn set_value_at_address(&mut self, addr: usize, value: i64) {
+        self.program[addr] = value;
+    }
 }
