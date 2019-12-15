@@ -3,6 +3,8 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::{self, BufReader};
 
+pub mod intcode_computer;
+
 pub fn read_input() -> Result<Vec<String>, io::Error> {
     let arg = env::args()
         .skip(1)
