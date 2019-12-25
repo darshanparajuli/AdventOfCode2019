@@ -96,13 +96,24 @@ fn part2(input: &[Reaction]) {
 
     let fuel = reaction_map[&"FUEL".to_string()];
 
-    let mut ores = 1_000_000_000_000i64;
-    let mut total = 0;
+    let total_ores = 1_000_000_000_000i64;
+
+    let mut low = 0;
+    let mut high = total_ores;
+
+    let total: i64;
+
     loop {
+        if low >= high {
+            total = high;
+            break;
+        }
+
+        let mid = (low + high) / 2;
         part1_helper(
             &fuel.output.name,
             &reaction_map,
-            fuel.output.amount,
+            mid,
             &mut count,
             &mut remaining,
         );
@@ -112,17 +123,16 @@ fn part2(input: &[Reaction]) {
             let r = ore_map[k];
             let run_count = r.required_runs(*v - *remaining.entry(k).or_insert(0));
             t += run_count.count * r.ore_amount();
-            remaining.insert(k, run_count.excess);
         }
 
+        remaining.clear();
         count.clear();
 
-        ores -= t;
-        if ores < 0 {
-            break;
+        if t > total_ores {
+            high = mid - 1;
+        } else if t < total_ores {
+            low = mid + 1;
         }
-
-        total += 1;
     }
 
     println!("part 2: {}", total);
@@ -190,15 +200,11 @@ impl Reaction {
     }
 
     fn required_runs(&self, output_amt: i64) -> RunCount {
-        let mut a = output_amt as i64;
-        let mut c = 0;
-        while a > 0 {
-            a -= self.output.amount as i64;
-            c += 1;
-        }
+        let c = ((output_amt as f64) / (self.output.amount as f64)).ceil() as i64;
+        let a = c * self.output.amount - output_amt;
         RunCount {
             count: c,
-            excess: a.abs() as i64,
+            excess: a,
         }
     }
 }
