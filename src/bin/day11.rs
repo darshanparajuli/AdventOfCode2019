@@ -105,7 +105,7 @@ fn part1(program: &[i64]) {
     let mut map: HashMap<(i64, i64), Color> = HashMap::new();
 
     let mut computer = IntCodeComputer::new(program.to_vec());
-    computer.set_initial_input(&[Color::Black.into()]);
+    computer.write_to_input(&[Color::Black.into()]);
 
     loop {
         match computer.run() {

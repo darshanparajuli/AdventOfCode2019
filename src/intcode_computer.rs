@@ -1,5 +1,6 @@
 use std::collections::VecDeque;
 
+#[derive(Clone)]
 pub struct IntCodeComputer {
     program: Vec<i64>,
     pc: usize,
@@ -7,6 +8,7 @@ pub struct IntCodeComputer {
     input: Input,
 }
 
+#[derive(Clone)]
 pub struct Input {
     buffer: VecDeque<i64>,
 }
@@ -73,7 +75,7 @@ impl IntCodeComputer {
         }
     }
 
-    pub fn set_initial_input(&mut self, initial_input: &[i64]) {
+    pub fn write_to_input(&mut self, initial_input: &[i64]) {
         for i in initial_input {
             self.input.write(*i);
         }
