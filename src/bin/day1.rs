@@ -1,15 +1,13 @@
 use aoc_2019::read_input;
 use std::cmp::max;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
-        .map(|line| line.parse::<i32>())
-        .collect::<Result<Vec<_>, _>>()?;
+        .map(|line| line.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
     part1(&input);
     part2(&input);
-    Ok(())
 }
 
 fn required_fuel(a: i32) -> i32 {

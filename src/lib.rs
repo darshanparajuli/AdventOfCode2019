@@ -1,17 +1,17 @@
 use std::env;
 use std::fs::File;
 use std::io::prelude::*;
-use std::io::{self, BufReader};
+use std::io::BufReader;
 use std::{thread, time};
 
 pub mod intcode_computer;
 
-pub fn read_input() -> Result<Vec<String>, io::Error> {
-    let arg = env::args()
-        .skip(1)
-        .next()
-        .ok_or(io::Error::from(io::ErrorKind::InvalidInput))?;
-    BufReader::new(File::open(arg)?).lines().collect()
+pub fn read_input() -> Vec<String> {
+    let arg = env::args().skip(1).next().unwrap();
+    BufReader::new(File::open(arg).unwrap())
+        .lines()
+        .map(|line| line.unwrap())
+        .collect()
 }
 
 pub fn delay(millis: u64) {

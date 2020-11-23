@@ -1,19 +1,16 @@
 use aoc_2019::intcode_computer::*;
 use aoc_2019::read_input;
 use std::collections::{HashSet, VecDeque};
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
-        .map(|s| s.split(",").map(|a| a.parse::<i64>()))
+        .map(|s| s.split(",").map(|a| a.parse::<i64>().unwrap()))
         .flatten()
-        .collect::<Result<Vec<_>, _>>()?;
+        .collect::<Vec<_>>();
 
     part1(&input);
     part2(&input);
-
-    Ok(())
 }
 
 fn part1(input: &[i64]) {

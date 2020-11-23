@@ -1,8 +1,7 @@
 use aoc_2019::read_input;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
         .flat_map(|line| {
             line.split(",")
@@ -14,7 +13,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     part1(input.clone());
     part2(input);
-    Ok(())
 }
 
 fn part1(mut input: Vec<i32>) {

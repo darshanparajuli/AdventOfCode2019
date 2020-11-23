@@ -1,6 +1,5 @@
 use aoc_2019::read_input;
 use std::cmp;
-use std::error::Error;
 
 #[derive(Debug)]
 enum Path {
@@ -10,8 +9,8 @@ enum Path {
     D(u32),
 }
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
         .map(|line| {
             line.split(",")
@@ -29,8 +28,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     part1(&input[0], &input[1]);
     part2(&input[0], &input[1]);
-
-    Ok(())
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]

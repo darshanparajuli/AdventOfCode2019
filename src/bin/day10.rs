@@ -1,9 +1,8 @@
 use aoc_2019::read_input;
 use std::collections::HashSet;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
         .map(|s| {
             let mut row = vec![];
@@ -18,8 +17,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let (x, y) = part1(&input);
     part2(&input, x, y);
-
-    Ok(())
 }
 
 fn asteroid_hit(map: &[Vec<u32>], sx: i32, sy: i32, dx: i32, dy: i32) -> Option<(i32, i32)> {

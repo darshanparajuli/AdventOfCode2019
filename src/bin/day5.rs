@@ -1,17 +1,14 @@
 use aoc_2019::read_input;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let program = read_input()?
+fn main() {
+    let program = read_input()
         .iter()
-        .map(|line| line.split(",").map(|a| a.parse::<i32>()))
+        .map(|line| line.split(",").map(|a| a.parse::<i32>().unwrap()))
         .flatten()
-        .collect::<Result<Vec<_>, _>>()?;
+        .collect::<Vec<_>>();
 
     part1(program.clone());
     part2(program);
-
-    Ok(())
 }
 
 struct Mode {

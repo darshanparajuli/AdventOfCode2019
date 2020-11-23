@@ -1,9 +1,8 @@
 use aoc_2019::read_input;
 use std::collections::HashSet;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
         .map(|s| {
             let index = s.find(',').unwrap();
@@ -24,8 +23,6 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     part1(&input);
     part2(&input);
-
-    Ok(())
 }
 
 fn part1(input: &[Vec3]) {

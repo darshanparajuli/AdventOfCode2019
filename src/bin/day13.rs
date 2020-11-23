@@ -1,20 +1,17 @@
 use aoc_2019::intcode_computer::*;
 use aoc_2019::read_input;
 use std::convert::From;
-use std::error::Error;
 
-fn main() -> Result<(), Box<dyn Error>> {
-    let input = read_input()?
+fn main() {
+    let input = read_input()
         .iter()
         .map(|a| a.split(",").collect::<Vec<_>>())
         .flatten()
-        .map(|a| a.parse::<i64>())
-        .collect::<Result<Vec<_>, _>>()?;
+        .map(|a| a.parse::<i64>().unwrap())
+        .collect::<Vec<_>>();
 
     part1(&input);
     part2(&input);
-
-    Ok(())
 }
 
 fn part1(input: &[i64]) {

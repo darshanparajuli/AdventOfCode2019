@@ -1,13 +1,9 @@
-use std::error::Error;
-
-fn main() -> Result<(), Box<dyn Error>> {
+fn main() {
     let input = (147981, 691423);
 
     let (min, max) = input;
     part1(min, max);
     part2(min, max);
-
-    Ok(())
 }
 
 fn has_two_same_adjacent_digits(mut n: u32) -> bool {
